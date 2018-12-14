@@ -9,18 +9,32 @@
 	<body>
 		<div id="app">
 			<input type="text" v-on:input="changeTitle">
+			<h1 v-once>{{ title }}</h1>
 			<p>{{ title }}</p>
+			<p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+			<p v-once>{{ sayHello2() }}</p>
+			<hr>
+			<p v-html="finishedLink"></p> <!-- USE THIS CAREFULLY -->
 		</div>
 		<script>
 			new Vue({
 				el: '#app',
 				data: {
-					title: 'Hello World!'
+					title: 'Hello World!',
+					link: 'https://www.google.com',
+					finishedLink: '<a href="https://www.google.com">Google</a>'
 				},
 				methods: {
 					changeTitle: function(event) {
 						this.title = event.target.value;
-					}
+					},
+					sayHello: function(event) {
+						return 'Hello there';
+					},
+					sayHello2: function(event) {
+						this.title = 'Hello'
+						return this.title;
+					},
 				}
 			});
 		</script>
