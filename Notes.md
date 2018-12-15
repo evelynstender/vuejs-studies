@@ -17,3 +17,17 @@ Example:  `<button v-on:click="action">Button</button>` --> `<button @click="act
 \- We can use `:` as `v-bind`. It's a shortcut. 
 
 Example: `<a v-bind:href="link">Link</a>` --> `<a :href="link">Link</a>`
+
+#### Useful links
+
+- Official Docs - Getting Started: http://vuejs.org/guide/
+
+- Official Docs - Template Syntax: http://vuejs.org/guide/syntax.html
+
+- Official Docs - Events: http://vuejs.org/guide/events.html
+
+- Official Docs - Computed Properties & Watchers: http://vuejs.org/guide/computed.html
+
+- Official Docs - Class & Style Binding: http://vuejs.org/guide/class-and-style.html
+
+## Section 3
