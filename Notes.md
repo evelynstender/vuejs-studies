@@ -11,7 +11,7 @@
 
 \- We can use `@` as `v-on`. It's a shortcut.
 
-Example:  `<button v-on:click="action">Button</button>` --> `<button @:click="action">Button</button>`
+Example:  `<button v-on:click="action">Button</button>` --> `<button @click="action">Button</button>`
 <br><br>
 
 \- We can use `:` as `v-bind`. It's a shortcut. 
