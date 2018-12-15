@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<link rel="stylesheet" href="">
+		<script src="../vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="name">
+			<p>{{ name }}</p>
+			<hr>
+			<button	v-on:click="increase">Increase</button>
+			<button	v-on:click="decrease">Decrease</button>
+			<button v-on:click="increaseSecond">Increase Second</button>
+			<p>Counter: {{ counter }} | {{ secondCounter }}</p>
+			<p>Result: {{ result() }} | {{ output }}</p>
+			<hr>
+			<button v-on:click="changeLink">Click to change Link</button>
+			<a v-bind:href="link">Link</a>
+			<button @:click="changeLink">Click to change Link</button>
+			<a :href="link">Link</a>
+		</div>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					name: 'Evelyn',
+					counter: 0,
+					secondCounter: 0,
+					link: 'htts://www.google.com'
+				},
+				computed: {
+					output: function() {
+						console.log("Computed")
+						return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+					}
+				},
+				watch: {
+					counter: function(value) {
+						var vm = this;
+						setTimeout(function() {
+							vm.counter = 0;
+						}, 2000)
+					}
+				},
+				methods: {
+					increase: function() {
+						this.counter++;
+					},
+					decrease: function() {
+						this.counter--;						
+					},
+					increaseSecond: function() {
+						this.secondCounter++;
+					},
+					result: function() {
+						console.log("Method")
+						return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+					},
+					changeLink: function() {
+						this.link = 'https://www.youtube.com'
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
