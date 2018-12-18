@@ -14,6 +14,10 @@ Example: `<a v-bind:href="link">Link</a>` --> `<a :href="link">Link</a>`
 
 ## Section 3
 
+\- On Vue.js version 2.1 or higher, you now actually have access to a v-else-if  directive:  <https://vuejs.org/v2/guide/conditional.html#v-else-if.>
+
+\- While `v-if="CONDITION"` attaches or ditaches the element, `v-show="CONDITION"` just hide/show it. So, if you're using a `v-if` condition and set it to false, you can't see the element if you inspect the page (because it's ditached), but if you use `v-show` and inspect, you will see the element there (because it's hidden / not being displayed). `v-if` is also better performance-wise to have less elements in the DOM.
+
 ## Useful links
 
 - Installation - <https://vuejs.org/v2/guide/installation.html>
