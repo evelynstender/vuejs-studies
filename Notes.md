@@ -33,3 +33,7 @@ Example: `<a v-bind:href="link">Link</a>` --> `<a :href="link">Link</a>`
 - Official Docs - Computed Properties & Watchers: <http://vuejs.org/guide/computed.html>
 
 - Official Docs - Class & Style Binding: <http://vuejs.org/guide/class-and-style.html>
+
+- Official Docs - Conditionals: <http://vuejs.org/guide/conditional.html>
+
+- Official Docs - Lists: <http://vuejs.org/guide/list.html>
