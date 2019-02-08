@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <script src="../../vue.js"></script>
+    <link rel="stylesheet" href="foundation.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+  <body>
+    <div id="app">
+        <section class="row">
+            <div class="small-6 columns">
+                <h1 class="text-center">YOU</h1>
+                <div class="healthbar">
+                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                        {{ yourHealth }}
+                    </div>
+                </div>
+            </div>
+            <div class="small-6 columns">
+                <h1 class="text-center">MONSTER</h1>
+                <div class="healthbar">
+                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                        {{ monstersHealth }}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section v-if="!hasGameStarted" class="row controls">
+            <div class="small-12 columns">
+                <button @click="startGame" id="start-game">START NEW GAME</button>
+            </div>
+        </section>
+        <section v-if="hasGameStarted" class="row controls">
+            <div class="small-12 columns">
+                <button @click="attack" id="attack">ATTACK</button>
+                <button @click="specialAttack" id="special-attack">SPECIAL ATTACK</button>
+                <button @click="heal" id="heal">HEAL</button>
+                <button @click="endGame" id="give-up">GIVE UP</button>
+            </div>
+        </section>
+        <section v-if="showLogs" class="row log">
+            <div class="small-12 columns">
+                <ul>
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+              yourHealth: 100,
+              monstersHealth: 100,
+              hasGameStarted: false,
+              showLogs: false,
+            },
+            computed: {
+            },
+            watch: {
+              yourHealth: function(newYourHealth) {
+                if(newYourHealth > 100)
+                  this.yourHealth = 100
+              }
+            },
+            methods: {
+              validatePoints: function() {
+                if(this.monstersHealth <= 0)
+                  this.endGameMessage('You win! New game?')
+                else if(this.yourHealth <= 0)
+                  this.endGameMessage('You lost! New game?')
+              },
+              startGame: function() {
+                this.hasGameStarted = true
+                this.showLogs = false
+                this.yourHealth = 100
+                this.monstersHealth = 100
+                
+              },
+              attack: function() {
+                this.showLogs = true
+                this.monstersHealth -= Math.floor(Math.random() * 15);
+                this.yourHealth -= Math.floor(Math.random() * 15);
+                
+                this.validatePoints();
+              },
+              specialAttack: function() {
+                this.showLogs = true
+                this.monstersHealth -= (Math.floor(Math.random() * (25 - 15 + 1) ) + 15);
+                this.yourHealth -= (Math.floor(Math.random() * (25 - 15 + 1) ) + 15);
+                
+                this.validatePoints();
+              },
+              heal: function() {
+                this.yourHealth += 10
+                this.yourHealth -= Math.floor(Math.random() * 15);
+              },
+              endGame: function() {
+                this.hasGameStarted = false
+              },
+              endGameMessage: function(message) {
+                if(confirm(message)){
+                  this.startGame()
+                }
+                else {
+                  this.endGame()
+                }
+              },
+            }
+          });
+    </script>
+  </body>
+</html>
